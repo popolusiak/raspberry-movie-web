@@ -1,0 +1,22 @@
+<md-card>
+   <md-card-title-group>
+      <img md-card-sm-image src="http://img.csfd.cz/files/images/film/posters/160/654/160654904_0227f8.jpg" />
+      <md-card-title>{{title}}</md-card-title>
+      <md-card-subtitle>
+        <span *ngFor="let subt of movie.titles"> {{subt.title}} / </span>
+        <p>
+          <span *ngFor="let genre of movie.genres"><strong>{{genre.name}}</strong> / </span>
+        </p> 
+      </md-card-subtitle>
+   </md-card-title-group>
+
+   <md-card-content>
+    
+    {{movie.description}}    
+  </md-card-content>
+  <md-card-actions>
+    <button md-button>Detail</button>
+    <button md-button>Spustiť</button>
+    <md-checkbox [checked]="false">Titulky</md-checkbox>
+  </md-card-actions>
+</md-card>

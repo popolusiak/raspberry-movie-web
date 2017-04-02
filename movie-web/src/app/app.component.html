@@ -1,0 +1,9 @@
+<md-sidenav-container fullscreen class="example-sidenav-fab-container">
+  <md-sidenav #sidenav mode="side" opened="true">   
+    <tree-root [nodes]="nodes"></tree-root>    
+  </md-sidenav>
+  <button md-mini-fab *ngIf="!sidenav.opened" class="example-fab" (click)="sidenav.toggle()">
+    <md-icon>add</md-icon>
+  </button>
+  <router-outlet></router-outlet>
+</md-sidenav-container>
