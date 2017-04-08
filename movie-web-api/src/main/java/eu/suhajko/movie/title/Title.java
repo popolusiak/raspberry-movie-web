@@ -12,16 +12,11 @@ import javax.validation.constraints.NotNull;
 /**
  * Created by marek.melis on 4/2/17.
  */
-@Entity
-@Table(name = "TITLE")
-public class Title extends AbstractPersistable<Long> {
+public class Title {
 
-    @Column(name = "LANGUAGE")
     @NotNull(message = "Language is mandatory")
-    @Enumerated
     private Language language;
     @NotNull(message = "Title is mandatory")
-    @Column(name = "TITLE")
     private String title;
 
     public Language getLanguage() {

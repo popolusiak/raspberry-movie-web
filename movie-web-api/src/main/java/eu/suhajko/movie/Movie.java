@@ -14,7 +14,7 @@ import java.util.List;
  * Created by marek.melis on 4/2/17.
  */
 @Entity
-@Table(name = "MOVIE")
+@Table(name = "movie")
 public class Movie extends AbstractPersistable<Long> {
 
 
@@ -34,7 +34,7 @@ public class Movie extends AbstractPersistable<Long> {
         return super.getId();
     }
 
-    @Column(name = "DESCRIPTION")
+    @Column(name = "description")
     public String getDescription() {
         return description;
     }

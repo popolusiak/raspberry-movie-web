@@ -12,9 +12,9 @@ import java.util.List;
  * Created by marek.melis on 4/2/17.
  */
 @Entity
-@Table(name = "CATEGORY")
+@Table(name = "category")
 public class Category extends AbstractPersistable<Long> {
-    @Column(name = "NAME")
+    @Column(name = "name")
     @NotNull(message = "Name is mandatory field")
     private String name;
 
@@ -22,11 +22,11 @@ public class Category extends AbstractPersistable<Long> {
     private List<Category> subcategories;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "PARENT_CATETORY_ID")
+    @JoinColumn(name = "parent_category_id")
     private Category parentCategory;
 
     @ManyToMany
-    @JoinTable(name = "CATEGORY_MOVIES", joinColumns = @JoinColumn(name = "CATEGORY_ID"), inverseJoinColumns = @JoinColumn(name = "MOVIE_ID"))
+    @JoinTable(name = "category_movies", joinColumns = @JoinColumn(name = "category_id"), inverseJoinColumns = @JoinColumn(name = "movie_id"))
     private List<Movie> movies;
 
     public String getName() {
