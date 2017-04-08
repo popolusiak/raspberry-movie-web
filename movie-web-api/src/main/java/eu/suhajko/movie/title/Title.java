@@ -1,11 +1,12 @@
-package eu.suhajko.movies;
+package eu.suhajko.movie.title;
 
-import eu.suhajko.AbstractEntityImpl;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Enumerated;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 
 /**
@@ -14,16 +15,20 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "TITLE")
 public class Title extends AbstractPersistable<Long> {
-    @Column(name = "LANGUAGE")
-    private String language;
-    private String title;
-    @Column(name = "TITLE")
 
-    public String getLanguage() {
+    @Column(name = "LANGUAGE")
+    @NotNull(message = "Language is mandatory")
+    @Enumerated
+    private Language language;
+    @NotNull(message = "Title is mandatory")
+    @Column(name = "TITLE")
+    private String title;
+
+    public Language getLanguage() {
         return language;
     }
 
-    public Title setLanguage(String language) {
+    public Title setLanguage(Language language) {
         this.language = language;
         return this;
     }

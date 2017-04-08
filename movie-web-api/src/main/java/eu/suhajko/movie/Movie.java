@@ -1,6 +1,9 @@
-package eu.suhajko.movies;
+package eu.suhajko.movie;
 
-import eu.suhajko.AbstractEntityImpl;
+import eu.suhajko.movie.genre.Category;
+import eu.suhajko.movie.title.Title;
+import eu.suhajko.movie.title.TitleConverter;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
 import javax.persistence.*;
@@ -13,16 +16,25 @@ import java.util.List;
 @Entity
 @Table(name = "MOVIE")
 public class Movie extends AbstractPersistable<Long> {
-    @Column(name = "DESCRIPTION")
+
+
     private String description;
 
     @Column
     @Convert(converter = TitleConverter.class)
+    @NotEmpty(message = "Movies must have some titles")
     private List<Title> titles;
 
     @ManyToMany(mappedBy = "movies")
-    private List<Genre> genres;
+//    @NotEmpty(message = "Movie must be assigned to some category")
+    private List<Category> categories;
 
+
+    @Override public Long getId() {
+        return super.getId();
+    }
+
+    @Column(name = "DESCRIPTION")
     public String getDescription() {
         return description;
     }
@@ -39,11 +51,11 @@ public class Movie extends AbstractPersistable<Long> {
         this.titles = titles;
     }
 
-    public List<Genre> getGenres() {
-        return genres;
+    public List<Category> getCategories() {
+        return categories;
     }
 
-    public void setGenres(List<Genre> genres) {
-        this.genres = genres;
+    public void setCategories(List<Category> categories) {
+        this.categories = categories;
     }
 }
