@@ -2,6 +2,7 @@ package eu.suhajko.movie
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import eu.suhajko.Kintups
+import org.hamcrest.Matchers
 import org.junit.runner.RunWith
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
@@ -9,6 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.http.MediaType
 import org.springframework.test.context.ActiveProfiles
 import org.springframework.test.web.servlet.MockMvc
+import org.springframework.test.web.servlet.result.JsonPathResultMatchers
 import spock.lang.Specification
 
 import java.nio.charset.Charset
@@ -77,5 +79,19 @@ class MovieRepositorySpecification extends Specification {
 
         and: "Should return page with one movie ${title}"
         movieResult.andExpect(jsonPath('$._embedded.movies[0].titles[0].title').value(title))
+    }
+
+    def "Find all movies ordered by title"(){
+        given:
+        def url = "${urlPath}"
+        def first = "Alf";
+        def second = "Grows Ups";
+
+        when: "Requesting all movies by ${url} ordered sorted by title"
+        def  movieResult = mockMvc.perform(get(url).param("sort", "title,asc"))
+
+        then: "Movies are sorted by title in order ${first}, ${second}"
+        movieResult.andExpect(jsonPath('$._embedded.movies[0].titles[0].title').value(first))
+        .andExpect(jsonPath('$._embedded.movies[1].titles[0].title').value(second))
     }
 }
