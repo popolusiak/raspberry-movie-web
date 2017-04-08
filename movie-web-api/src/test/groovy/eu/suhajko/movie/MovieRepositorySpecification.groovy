@@ -13,10 +13,10 @@ import spock.lang.Specification
 
 import java.nio.charset.Charset
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK)
 @AutoConfigureMockMvc
@@ -39,7 +39,6 @@ class MovieRepositorySpecification extends Specification {
 
         when: "All mandatory fields are provided"
         def movieResult = mockMvc.perform(post(urlPath)
-                .contentType(mediaType)
                 .content(movie)
         )
 
@@ -49,5 +48,34 @@ class MovieRepositorySpecification extends Specification {
         movieResult.andExpect(jsonPath('$.id',).isNumber());
         movieResult.andExpect(jsonPath('$.titles[0].title').value("Grows Ups"));
 
+    }
+
+    def "Find existing movie by id"(){
+        given:
+        def existingId = 1l;
+        def url = "${urlPath}/${existingId}"
+
+        when: "Search by id ${url}"
+        def movieResult = mockMvc.perform(get(url))
+
+        then: "Should return movie with id ${existingId}"
+        movieResult.andExpect(jsonPath('$.id').value(existingId))
+    }
+
+    def "Search by title for existing movie"(){
+        given:
+        def title="Alf"
+
+        when: "Search by movie title: ${title}"
+        def url = "${urlPath}/search/findByTitle"
+        def movieResult = mockMvc.perform(get(url)
+                .param("title", title)
+                .param("size", "5"));
+
+        then: "Response HTTP code should be 200 - OK"
+        movieResult.andExpect(status().isOk())
+
+        and: "Should return page with one movie ${title}"
+        movieResult.andExpect(jsonPath('$._embedded.movies[0].titles[0].title').value(title))
     }
 }

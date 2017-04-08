@@ -25,7 +25,10 @@ public class Movie extends AbstractPersistable<Long> {
     @NotEmpty(message = "Movies must have some titles")
     private List<Title> titles;
 
-    @ManyToMany(mappedBy = "movies")
+    @Column(name = "titles", updatable = false, insertable = false)
+    private String title;
+
+    @ManyToMany(mappedBy = "movies", fetch = FetchType.LAZY)
 //    @NotEmpty(message = "Movie must be assigned to some category")
     private List<Category> categories;
 
@@ -41,6 +44,14 @@ public class Movie extends AbstractPersistable<Long> {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public List<Title> getTitles() {

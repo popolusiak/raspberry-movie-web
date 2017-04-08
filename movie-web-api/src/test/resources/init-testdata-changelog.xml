@@ -5,10 +5,19 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd
         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
-    <changeSet id="init-categories" author="marek">
-        <insert tableName="CATEGORY"><column name="name" value="Komédia" /></insert>
-        <insert tableName="CATEGORY"><column name="name" value="Horror" /></insert>
-        <insert tableName="CATEGORY"><column name="name" value="Romantický" /></insert>
+    <changeSet id="init-test-data" author="marek">
+        <insert tableName="category"><column name="name" value="Komédia" /></insert>
+        <insert tableName="category"><column name="name" value="Horror" /></insert>
+        <insert tableName="category"><column name="name" value="Romantický" /></insert>
+        <insert tableName="movie">
+            <column name="titles" value="Alf|SK#Alf|EN" />
+            <column name="description" value="Strasne dobry film scify horror komedia drama" />
+        </insert>
+        <insert tableName="category_movies">
+            <column name="category_id" valueComputed="(SELECT id FROM category WHERE name = 'Horror')"></column>
+            <column name="movie_id" valueComputed="(SELECT id FROM movie WHERE titles = 'Alf|SK#Alf|EN')"></column>
+        </insert>
+
     </changeSet>
     
 </databaseChangeLog>
