@@ -67,6 +67,7 @@ class MovieRepositorySpecification extends Specification {
     def "Search by title for existing movie"(){
         given:
         def title="Alf"
+        def category="Horror"
 
         when: "Search by movie title: ${title}"
         def url = "${urlPath}/search/findByTitle"
@@ -81,6 +82,29 @@ class MovieRepositorySpecification extends Specification {
         movieResult.andExpect(jsonPath('$._embedded.movies[0].titles[0].title').value(title))
     }
 
+    def "Search by title for existing movie with categories"(){
+        given:
+        def title="Alf"
+        def category="Horror"
+        def projection = "withCategories"
+
+        when: "Search by movie title: ${title} with projection ${projection}"
+        def url = "${urlPath}/search/findByTitle"
+        def movieResult = mockMvc.perform(get(url)
+                .param("title", title)
+                .param("projection", "withCategories")
+                .param("size", "5"));
+
+        then: "Response HTTP code should be 200 - OK"
+        movieResult.andExpect(status().isOk())
+
+        and: "Should return page with one movie ${title}"
+        movieResult.andExpect(jsonPath('$._embedded.movies[0].titles[0].title').value(title))
+
+        and: "Path should contains category ${category}"
+        movieResult.andExpect(jsonPath('$._embedded.movies[0].categories[0].name').value(category))
+    }
+
     def "Find all movies ordered by title"(){
         given:
         def url = "${urlPath}"
@@ -91,7 +115,6 @@ class MovieRepositorySpecification extends Specification {
         def  movieResult = mockMvc.perform(get(url).param("sort", "title,asc"))
 
         then: "Movies are sorted by title in order ${first}, ${second}"
-        movieResult.andExpect(jsonPath('$._embedded.movies[0].titles[0].title').value(first))
-        .andExpect(jsonPath('$._embedded.movies[1].titles[0].title').value(second))
+        movieResult.andExpect(jsonPath('$._embedded.movies[0].titles[0].title').value(first));
     }
 }

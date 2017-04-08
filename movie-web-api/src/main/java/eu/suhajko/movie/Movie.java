@@ -13,6 +13,9 @@ import java.util.List;
 /**
  * Created by marek.melis on 4/2/17.
  */
+@NamedEntityGraphs({
+        @NamedEntityGraph(name = "Movie.withCategories", attributeNodes = @NamedAttributeNode("categories"))
+})
 @Entity
 @Table(name = "movie")
 public class Movie extends AbstractPersistable<Long> {
