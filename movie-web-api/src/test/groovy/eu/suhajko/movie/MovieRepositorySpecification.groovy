@@ -88,7 +88,7 @@ class MovieRepositorySpecification extends Specification {
         def category="Horror"
         def projection = "withCategories"
 
-        when: "Search by movie title: ${title} with projection ${projection}"
+        when: "Search by movie title: ${title} with projection=${projection}"
         def url = "${urlPath}/search/findByTitle"
         def movieResult = mockMvc.perform(get(url)
                 .param("title", title)
