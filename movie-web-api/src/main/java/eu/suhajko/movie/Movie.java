@@ -35,6 +35,8 @@ public class Movie extends AbstractPersistable<Long> {
 //    @NotEmpty(message = "Movie must be assigned to some category")
     private List<Category> categories;
 
+    @Column(name = "path_to_movie")
+    private String pathToMovie;
 
     @Override public Long getId() {
         return super.getId();
@@ -71,5 +73,14 @@ public class Movie extends AbstractPersistable<Long> {
 
     public void setCategories(List<Category> categories) {
         this.categories = categories;
+    }
+
+    public String getPathToMovie() {
+        return pathToMovie;
+    }
+
+    public Movie setPathToMovie(String pathToMovie) {
+        this.pathToMovie = pathToMovie;
+        return this;
     }
 }

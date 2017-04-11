@@ -1,5 +1,9 @@
 package eu.suhajko.command.processor;
 
+import eu.suhajko.movie.movieplayer.exception.ProcessExecutionException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.IOException;
 
 
@@ -8,8 +12,16 @@ import java.io.IOException;
  */
 public class BashCommandProcessorImpl implements BashCommandProcessor {
 
-    @Override public Process execute(String command) throws IOException {
-        return Runtime.getRuntime().exec(command);
+    Logger logger = LoggerFactory.getLogger(getClass());
+
+    @Override public Process execute(String command) {
+        try {
+            return Runtime.getRuntime().exec(command);
+        }
+        catch (IOException e) {
+            logger.error("Exception thrown when trying to run command {}", command, e );
+            throw new ProcessExecutionException();
+        }
     }
 
     @Override public void shutDown(Process process) {
