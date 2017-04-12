@@ -10,18 +10,18 @@ import org.spockframework.runtime.Sputnik
  * Spring container is loaded only first time, next executions will use existing spring container.
  * It's for debug purpose
  */
-class Kintups extends Sputnik {
-    Kintups(Class<?> clazz) throws InitializationError {
-        super(clazz)
-    }
+//class Kintups extends Sputnik {
+//    Kintups(Class<?> clazz) throws InitializationError {
+//        super(clazz)
+//    }
 
-    @Override
-    void run(RunNotifier notifier) {
-        def n = Integer.valueOf(System.getProperty("kintupsRepeat", "1"));
-        super.runExtensionsIfNecessary();
-        super.generateSpecDescriptionIfNecessary();
-        n.times {
-            RunContext.get().createSpecRunner(super.getSpec(), notifier).run();
-        }
-    }
-}
+//    @Override
+//    void run(RunNotifier notifier) {
+//        def n = Integer.valueOf(System.getProperty("kintupsRepeat", "1"));
+//        super.runExtensionsIfNecessary();
+//        super.generateSpecDescriptionIfNecessary();
+//        n.times {
+//            RunContext.get().createSpecRunner(super.getSpec(), notifier).run();
+//        }
+//    }
+//}
