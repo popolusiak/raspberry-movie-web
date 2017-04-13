@@ -1,23 +1,18 @@
 package eu.suhajko.movie.title;
 
-import org.springframework.data.jpa.domain.AbstractPersistable;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Enumerated;
-import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 
 
 /**
  * Created by marek.melis on 4/2/17.
  */
-public class Title {
+public class Title implements Serializable {
 
     @NotNull(message = "Language is mandatory")
     private Language language;
     @NotNull(message = "Title is mandatory")
-    private String title;
+    private String name;
 
     public Language getLanguage() {
         return language;
@@ -28,12 +23,12 @@ public class Title {
         return this;
     }
 
-    public String getTitle() {
-        return title;
+    public String getName() {
+        return name;
     }
 
-    public Title setTitle(String title) {
-        this.title = title;
+    public Title setName(String name) {
+        this.name = name;
         return this;
     }
 }

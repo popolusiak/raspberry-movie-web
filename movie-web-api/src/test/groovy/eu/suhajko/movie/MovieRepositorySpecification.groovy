@@ -47,7 +47,7 @@ class MovieRepositorySpecification extends Specification {
         movieResult.andExpect(status().isCreated());
         and: "Response contains new created movie"
         movieResult.andExpect(jsonPath('$.id',).isNumber());
-        movieResult.andExpect(jsonPath('$.titles[0].title').value("Grows Ups"));
+        movieResult.andExpect(jsonPath('$.titles[0].name').value("Grows Ups"));
 
     }
 
@@ -68,17 +68,17 @@ class MovieRepositorySpecification extends Specification {
         def title="Alf"
         def category="Horror"
 
-        when: "Search by movie title: ${title}"
+        when: "Search by movie name: ${title}"
         def url = "${urlPath}/search/findByTitle"
         def movieResult = mockMvc.perform(get(url)
-                .param("title", title)
+                .param("name", title)
                 .param("size", "5"));
 
         then: "Response HTTP code should be 200 - OK"
         movieResult.andExpect(status().isOk())
 
         and: "Should return page with one movie ${title}"
-        movieResult.andExpect(jsonPath('$._embedded.movies[0].titles[0].title').value(title))
+        movieResult.andExpect(jsonPath('$._embedded.movies[0].titles[0].name').value(title))
     }
 
     def "Search by title for existing movie with categories"(){
@@ -87,10 +87,10 @@ class MovieRepositorySpecification extends Specification {
         def category="Horror"
         def projection = "withCategories"
 
-        when: "Search by movie title: ${title} with projection=${projection}"
+        when: "Search by movie name: ${title} with projection=${projection}"
         def url = "${urlPath}/search/findByTitle"
         def movieResult = mockMvc.perform(get(url)
-                .param("title", title)
+                .param("name", title)
                 .param("projection", "withCategories")
                 .param("size", "5"));
 
@@ -98,7 +98,7 @@ class MovieRepositorySpecification extends Specification {
         movieResult.andExpect(status().isOk())
 
         and: "Should return page with one movie ${title}"
-        movieResult.andExpect(jsonPath('$._embedded.movies[0].titles[0].title').value(title))
+        movieResult.andExpect(jsonPath('$._embedded.movies[0].titles[0].name').value(title))
 
         and: "Path should contains category ${category}"
         movieResult.andExpect(jsonPath('$._embedded.movies[0].categories[0].name').value(category))
@@ -110,10 +110,10 @@ class MovieRepositorySpecification extends Specification {
         def first = "Alf";
         def second = "Grows Ups";
 
-        when: "Requesting all movies by ${url} ordered sorted by title"
-        def  movieResult = mockMvc.perform(get(url).param("sort", "title,asc"))
+        when: "Requesting all movies by ${url} ordered sorted by name"
+        def  movieResult = mockMvc.perform(get(url).param("sort", "name,asc"))
 
-        then: "Movies are sorted by title in order ${first}, ${second}"
-        movieResult.andExpect(jsonPath('$._embedded.movies[0].titles[0].title').value(first));
+        then: "Movies are sorted by name in order ${first}, ${second}"
+        movieResult.andExpect(jsonPath('$._embedded.movies[0].titles[0].name').value(first));
     }
 }

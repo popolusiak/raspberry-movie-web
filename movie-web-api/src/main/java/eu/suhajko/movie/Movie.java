@@ -20,9 +20,6 @@ import java.util.List;
 @Table(name = "movie")
 public class Movie extends AbstractPersistable<Long> {
 
-
-    private String description;
-
     @Column
     @Convert(converter = TitleConverter.class)
     @NotEmpty(message = "Movies must have some titles")
@@ -38,41 +35,37 @@ public class Movie extends AbstractPersistable<Long> {
     @Column(name = "path_to_movie")
     private String pathToMovie;
 
-    @Override public Long getId() {
-        return super.getId();
-    }
-
     @Column(name = "description")
-    public String getDescription() {
-        return description;
+    private String description;
+
+    @Column(name = "hash", unique = true)
+    private String hash;
+
+    public List<Title> getTitles() {
+        return titles;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public Movie setTitles(List<Title> titles) {
+        this.titles = titles;
+        return this;
     }
 
     public String getTitle() {
         return title;
     }
 
-    public void setTitle(String title) {
+    public Movie setTitle(String title) {
         this.title = title;
-    }
-
-    public List<Title> getTitles() {
-        return titles;
-    }
-
-    public void setTitles(List<Title> titles) {
-        this.titles = titles;
+        return this;
     }
 
     public List<Category> getCategories() {
         return categories;
     }
 
-    public void setCategories(List<Category> categories) {
+    public Movie setCategories(List<Category> categories) {
         this.categories = categories;
+        return this;
     }
 
     public String getPathToMovie() {
@@ -81,6 +74,24 @@ public class Movie extends AbstractPersistable<Long> {
 
     public Movie setPathToMovie(String pathToMovie) {
         this.pathToMovie = pathToMovie;
+        return this;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public Movie setDescription(String description) {
+        this.description = description;
+        return this;
+    }
+
+    public String getHash() {
+        return hash;
+    }
+
+    public Movie setHash(String hash) {
+        this.hash = hash;
         return this;
     }
 }

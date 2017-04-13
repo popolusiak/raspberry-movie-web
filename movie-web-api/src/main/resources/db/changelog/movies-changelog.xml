@@ -15,7 +15,9 @@
                 <constraints nullable="false"/>
             </column>
             <column name="path_to_movie" type="longvarchar"  />
-
+            <column name="hash" type="varchar(255)">
+                <constraints unique="true"  />
+            </column>
         </createTable>
 
         <createTable tableName="category">
