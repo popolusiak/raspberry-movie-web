@@ -35,7 +35,7 @@ class MovieRepositorySpecification extends Specification {
     def "Create movie with all mandatory fields"() {
         given:
         def movie = new ObjectMapper().writeValueAsString([
-                titles: [[title: "Grows Ups", language: "EN"], [title: "Dospeláci", language: "SK"]]
+                titles: [[name: "Grows Ups", language: "EN"], [name: "Dospeláci", language: "SK"]]
         ])
 
         when: "All mandatory fields are provided"
@@ -71,7 +71,7 @@ class MovieRepositorySpecification extends Specification {
         when: "Search by movie name: ${title}"
         def url = "${urlPath}/search/findByTitle"
         def movieResult = mockMvc.perform(get(url)
-                .param("name", title)
+                .param("title", title)
                 .param("size", "5"));
 
         then: "Response HTTP code should be 200 - OK"
@@ -90,7 +90,7 @@ class MovieRepositorySpecification extends Specification {
         when: "Search by movie name: ${title} with projection=${projection}"
         def url = "${urlPath}/search/findByTitle"
         def movieResult = mockMvc.perform(get(url)
-                .param("name", title)
+                .param("title", title)
                 .param("projection", "withCategories")
                 .param("size", "5"));
 
