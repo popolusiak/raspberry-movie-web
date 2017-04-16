@@ -3,7 +3,8 @@ import { Movie } from './movie';
 
 @Component({
     selector: 'movie-card',
-    templateUrl: 'movie-card.component.html'
+    templateUrl: 'movie-card.component.html',
+    styleUrls: ['./movie-card.component.css']
 })
 export class MovieCardComponent implements OnInit{
     @Input() movie: Movie

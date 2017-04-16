@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { MaterialModule } from '@angular/material';
 import { RouterModule } from '@angular/router';
 import { HomeComponent } from './home.component';
 import { TreeModule } from 'angular-tree-component';
@@ -25,7 +24,6 @@ const ROUTES = [
     BrowserModule,
     FormsModule,
     HttpModule,
-    MaterialModule,
     RouterModule.forRoot(ROUTES),
     TreeModule,
     InMemoryWebApiModule.forRoot(InMemoryDataService),

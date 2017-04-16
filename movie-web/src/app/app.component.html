@@ -1,9 +1,41 @@
-<md-sidenav-container fullscreen class="example-sidenav-fab-container">
-  <md-sidenav #sidenav mode="side" opened="true">   
+<!--https://medium.com/wdstack/bootstrap-sidebar-examples-e363021395ff-->
+<div class="nav-side-menu">
+    <div class="brand">Brand Logo</div>
+    <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+    <div class="menu-list">
+        <ul id="menu-content" class="menu-content collapse out">
+            <li>
+                <a href="#">
+                    <i class="fa fa-dashboard fa-lg"></i> Dashboard
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fa fa-dashboard fa-lg"></i> Katorieeg
+                </a>
+            </li>
+            <ul>
+                <tree-root [nodes]="nodes"></tree-root>
+            </ul>
+            
+        </ul>
+    </div>
+</div>
+<div class="container" id="main">
+    <div class="row">
+        <div class="col-md-12">
+            <h4>This is suppose to be in the main content</h4>
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>
+<!--<md-sidenav-container fullscreen class="example-sidenav-fab-container">
+  <md-sidenav #sidenav mode="side" opened="true">       
     <tree-root [nodes]="nodes"></tree-root>    
   </md-sidenav>
   <button md-mini-fab *ngIf="!sidenav.opened" class="example-fab" (click)="sidenav.toggle()">
     <md-icon>add</md-icon>
   </button>
+  <movie-player></movie-player>
   <router-outlet></router-outlet>
-</md-sidenav-container>
+</md-sidenav-container>-->
