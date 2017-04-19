@@ -6,8 +6,48 @@ export class InMemoryDataService implements InMemoryDbService {
 
     createDb(){
         let movies = [
-            {id: 1, titles: [{langulage: 'SK', title: 'Nepodarena Baba'},{langulage: 'EN', title: 'Nicht gut frajarka'}], genres: [{id: 1, name: "Horror"},{id: 2, name: "Drama"}], description: 'Peklo na zemi sa uskutocnilo co prisla zloba s temnout a vstupila do zivota nevinnemu chlapcovi Malemu Panovi Marekovi' },
-            {id: 2, titles: [{langulage: 'SK', title: 'Das en a'},{langulage: 'EN', title: 'Das en ic a mackenica'}], genres: [{id: 1, name: "Horror"},{id: 2, name: "Scify"}], description: 'Kadejaka macka pije s mojho pohara a bacha na to lebo nevyplati sa to.. ' }
+            {
+  "_embedded" : {
+    "movies" : [ {
+      "description" : "Strasne dobry film scify horror komedia drama",
+      "titles" : [ {
+        "language" : "SK",
+        "name" : "Alf"
+      }, {
+        "language" : "EN",
+        "name" : "Alf"
+      } ],
+      "categories" : [ {
+        "name" : "Horror",
+        "new" : false
+      } ],
+      "id" : 0,
+      "_links" : {
+        "self" : {
+          "href" : "http://localhost/api/movies/0"
+        },
+        "movie" : {
+          "href" : "http://localhost/api/movies/0{?projection}",
+          "templated" : true
+        },
+        "categories" : {
+          "href" : "http://localhost/api/movies/0/categories"
+        }
+      }
+    } ]
+  },
+  "_links" : {
+    "self" : {
+      "href" : "http://localhost/api/movies/search/findByTitle"
+    }
+  },
+  "page" : {
+    "size" : 5,
+    "totalElements" : 1,
+    "totalPages" : 1,
+    "number" : 0
+  }
+}
         ]
 
         return {movies};

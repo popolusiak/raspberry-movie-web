@@ -8,10 +8,10 @@
           <div class="col-md-10 px-3">
             <div class="card-block px-3">
               <ol class="breadcrumb title">
-                <li *ngFor="let subt of movie.titles; let i=index" class="breadcrumb-item"><span [class.title-bold]="i==0">{{subt.title}}</span></li>                
+                <li *ngFor="let subt of movie.titles; let i=index" class="breadcrumb-item"><span [class.title-bold]="i==0">{{subt.name}}</span></li>                
               </ol>
               <ol class="breadcrumb genre">
-                <li *ngFor="let genre of movie.genres" class="breadcrumb-item"><strong>{{genre.name}}</strong></li>                
+                <li *ngFor="let category of movie.categories" class="breadcrumb-item"><strong>{{category.name}}</strong></li>                
               </ol>
               <p class="card-text">
                  {{movie.description}}

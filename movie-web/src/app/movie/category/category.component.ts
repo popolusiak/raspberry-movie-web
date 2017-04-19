@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
 
-export class GenreComponent {
+export class CategoryComponent {
     
 }

@@ -1,9 +1,9 @@
 import { Title } from './title';
-import { Genre } from './genre/genre';
+import { Category } from './category/category';
 
 export class Movie {    
     id: number;
     titles: Title[];
-    genres: Genre[];
+    categories: Category[];
     description: string;
 }
