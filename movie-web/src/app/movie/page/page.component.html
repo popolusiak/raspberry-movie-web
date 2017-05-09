@@ -1,3 +1,6 @@
-<div *ngIf="page">
-    
+<div *ngIf="page">    
+    <ng-content></ng-content>
+    <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+        <button type="button" class="btn btn-secondary" (click)="buttonPageClicked(nb)" *ngFor="let nb of page.size | iterate ">{{nb}}</button>
+    </div>
 </div>

@@ -7,7 +7,7 @@ import 'rxjs/add/operator/map'
 
 @Injectable()
 export class MovieService {
-    r
+
     urlPath = "api/movies";
     headers = new Headers({'Content-Type': 'application/json'});
     
@@ -20,6 +20,11 @@ export class MovieService {
 
     getAll(): Observable<Page<Movie>> {
         return this.http.get(this.urlPath).map(response => new Page<Movie>(response.json(), "movies"))
+    }
+
+    nextPage(pageNumber: number, page: Page<Movie>): Observable<Page<Movie>> {
+        return this.http.get(page.nextPageLink())
+            .map(response => new Page<Movie>(response.json(), "movies"));
     }
 
 }
