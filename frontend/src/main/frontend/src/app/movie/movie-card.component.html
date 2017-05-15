@@ -1,0 +1,53 @@
+<section>
+  <div class="container py-3">
+    <div class="card">
+      <div class="row ">
+          <div class="col-md-2">
+            <img src="http://img.csfd.cz/files/images/film/posters/160/654/160654904_0227f8.jpg" class="w-100">
+          </div>
+          <div class="col-md-10 px-3">
+            <div class="card-block px-3">
+              <ol class="breadcrumb title">
+                <li *ngFor="let subt of movie.titles; let i=index" class="breadcrumb-item"><span [class.title-bold]="i==0">{{subt.name}}</span></li>                
+              </ol>
+              <ol class="breadcrumb genre">
+                <li *ngFor="let category of movie.categories" class="breadcrumb-item"><strong>{{category.name}}</strong></li>                
+              </ol>
+              <p class="card-text">
+                 {{movie.description}}
+              </p>          
+              <button class="btn btn-primary">Detail</button>
+              <button class="btn btn-success">Spusti</button>
+              <label class="custom-control custom-checkbox">
+                  <input type="checkbox" class="custom-control-input">
+                  <span class="custom-control-indicator"></span>
+                  <span class="custom-control-description">Check this custom checkbox</span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>
+
+<!--<md-card>
+   <md-card-title-group>
+      <img md-card-sm-image src="http://img.csfd.cz/files/images/film/posters/160/654/160654904_0227f8.jpg" />
+      <md-card-title>{{title}}</md-card-title>
+      <md-card-subtitle>
+        <span *ngFor="let subt of movie.titles"> {{subt.title}} / </span>
+        <p>
+          <span *ngFor="let genre of movie.genres"><strong>{{genre.name}}</strong> / </span>
+        </p> 
+      </md-card-subtitle>
+   </md-card-title-group>
+
+    <md-card-content>
+      {{movie.description}}    
+    </md-card-content>
+  <md-card-actions>
+    <button md-button>Detail</button>
+    <button md-button>Spustiť</button>
+    <md-checkbox [checked]="false">Titulky</md-checkbox>
+  </md-card-actions>
+</md-card>-->
