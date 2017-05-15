@@ -17,7 +17,71 @@
             <column name="category_id" valueComputed="(SELECT id FROM category WHERE name = 'Horror')"></column>
             <column name="movie_id" valueComputed="(SELECT id FROM movie WHERE titles = 'Alf|SK#Alf|EN')"></column>
         </insert>
+    </changeSet>
 
+    <changeSet id="init-test-data-2" author="marek">
+        <insert tableName="movie">
+            <column name="titles" value="Akta X|SK#The X Files|EN" />
+            <column name="description" value="No neviem dobry film scify horror komedia drama" />
+        </insert>
+        <insert tableName="category_movies">
+            <column name="category_id" valueComputed="(SELECT id FROM category WHERE name = 'Horror')"></column>
+            <column name="movie_id" valueComputed="(SELECT id FROM movie WHERE titles = 'Akta X|SK#The X Files|EN')"></column>
+        </insert>
+
+        <insert tableName="movie">
+            <column name="titles" value="AXX|SK#AXX|EN" />
+            <column name="description" value="No neviem dobry film scify horror komedia drama" />
+        </insert>
+        <insert tableName="category_movies">
+            <column name="category_id" valueComputed="(SELECT id FROM category WHERE name = 'Horror')"></column>
+            <column name="movie_id" valueComputed="(SELECT id FROM movie WHERE titles = 'AXX|SK#AXX|EN')"></column>
+        </insert>
+
+        <insert tableName="movie">
+            <column name="titles" value="AYY|SK#AYY|EN" />
+            <column name="description" value="No neviem dobry film scify horror komedia drama" />
+        </insert>
+        <insert tableName="category_movies">
+            <column name="category_id" valueComputed="(SELECT id FROM category WHERE name = 'Horror')"></column>
+            <column name="movie_id" valueComputed="(SELECT id FROM movie WHERE titles = 'AYY|SK#AYY|EN')"></column>
+        </insert>
+
+        <insert tableName="movie">
+            <column name="titles" value="ACC|SK#ACC|EN" />
+            <column name="description" value="No neviem dobry film scify horror komedia drama" />
+        </insert>
+        <insert tableName="category_movies">
+            <column name="category_id" valueComputed="(SELECT id FROM category WHERE name = 'Horror')"></column>
+            <column name="movie_id" valueComputed="(SELECT id FROM movie WHERE titles = 'ACC|SK#ACC|EN')"></column>
+        </insert>
+
+        <insert tableName="movie">
+            <column name="titles" value="ASS|SK#ASS|EN" />
+            <column name="description" value="No neviem dobry film scify horror komedia drama" />
+        </insert>
+        <insert tableName="category_movies">
+            <column name="category_id" valueComputed="(SELECT id FROM category WHERE name = 'Horror')"></column>
+            <column name="movie_id" valueComputed="(SELECT id FROM movie WHERE titles = 'ASS|SK#ASS|EN')"></column>
+        </insert>
+
+        <insert tableName="movie">
+            <column name="titles" value="AFF|SK#AFF|EN" />
+            <column name="description" value="No neviem dobry film scify horror komedia drama" />
+        </insert>
+        <insert tableName="category_movies">
+            <column name="category_id" valueComputed="(SELECT id FROM category WHERE name = 'Horror')"></column>
+            <column name="movie_id" valueComputed="(SELECT id FROM movie WHERE titles = 'AFF|SK#AFF|EN')"></column>
+        </insert>
+
+        <insert tableName="movie">
+            <column name="titles" value="APP|SK#APP|EN" />
+            <column name="description" value="No neviem dobry film scify horror komedia drama" />
+        </insert>
+        <insert tableName="category_movies">
+            <column name="category_id" valueComputed="(SELECT id FROM category WHERE name = 'Horror')"></column>
+            <column name="movie_id" valueComputed="(SELECT id FROM movie WHERE titles = 'APP|SK#APP|EN')"></column>
+        </insert>
     </changeSet>
     
 </databaseChangeLog>

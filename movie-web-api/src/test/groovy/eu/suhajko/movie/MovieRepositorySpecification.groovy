@@ -72,7 +72,7 @@ class MovieRepositorySpecification extends Specification {
         def url = "${urlPath}/search/findByTitle"
         def movieResult = mockMvc.perform(get(url)
                 .param("title", title)
-                .param("size", "5"));
+                .param("size", "2"));
 
         then: "Response HTTP code should be 200 - OK"
         movieResult.andExpect(status().isOk())
@@ -83,7 +83,7 @@ class MovieRepositorySpecification extends Specification {
 
     def "Search by title for existing movie with categories"(){
         given:
-        def title="Alf"
+        def title="A"
         def category="Horror"
         def projection = "withCategories"
 
@@ -92,7 +92,8 @@ class MovieRepositorySpecification extends Specification {
         def movieResult = mockMvc.perform(get(url)
                 .param("title", title)
                 .param("projection", "withCategories")
-                .param("size", "5"));
+                .param("page", "0")
+                .param("size", "2"));
 
         then: "Response HTTP code should be 200 - OK"
         movieResult.andExpect(status().isOk())
