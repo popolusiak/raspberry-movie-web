@@ -7,7 +7,7 @@
 
     <changeSet id="create-movie" author="marek">
         <createTable tableName="movie">
-            <column name="id" type="bigint" autoIncrement="true">
+            <column name="id" type="int" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="description" type="varchar(255)"/>
@@ -21,33 +21,25 @@
         </createTable>
 
         <createTable tableName="category">
-            <column name="id" type="bigint" autoIncrement="true">
+            <column name="id" type="int" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="name" type="varchar(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="parent_category_id" type="bigint">
-                <constraints unique="true"  />
+            <column name="parent_category_id" type="int">
+                <constraints foreignKeyName="fk_category_category" referencedTableName="category" referencedColumnNames="id"/>
             </column>
         </createTable>
 
         <createTable tableName="category_movies">
-            <column name="category_id" type="bigint">
-                <constraints nullable="false" />
+            <column name="category_id" type="int">
+                <constraints nullable="false"  foreignKeyName="fk_category_movies_category" referencedTableName="category" referencedColumnNames="id"/>
             </column>
-            <column name="movie_id" type="bigint">
-                <constraints nullable="false" />
+            <column name="movie_id" type="int">
+                <constraints nullable="false" foreignKeyName="fk_category_movies_movie" referencedTableName="movie" referencedColumnNames="id" />
             </column>
         </createTable>
-
-        <addForeignKeyConstraint baseTableName="category" baseColumnNames="parent_category_id" constraintName="fk_category_category"
-                                 referencedTableName="category"
-                                 referencedColumnNames="id" />
-        <addForeignKeyConstraint baseTableName="category_movies" baseColumnNames="movie_id" constraintName="fk_category_movies_movie" referencedTableName="movie"
-                                 referencedColumnNames="id" />
-        <addForeignKeyConstraint baseTableName="category_movies" baseColumnNames="category_id" constraintName="fk_category_movies_category" referencedTableName="category"
-                                 referencedColumnNames="id" />
     </changeSet>
 
 </databaseChangeLog>
