@@ -69,9 +69,9 @@
 		</dependency>
 
 		<dependency>
-			<groupId>net.kemitix</groupId>
-			<artifactId>sqlite-dialect</artifactId>
-			<version>0.1.0</version>
+			<groupId>com.enigmabridge</groupId>
+			<artifactId>hibernate4-sqlite-dialect</artifactId>
+			<version>0.1.2</version>
 		</dependency>
 
 		<!-- Spock dependencies -->
