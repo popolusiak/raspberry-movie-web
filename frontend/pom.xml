@@ -15,6 +15,12 @@
     </parent>
 
     <build>
+        <resources>
+          <resource>
+            <directory>target/frontend</directory>
+            <targetPath>static</targetPath>
+          </resource>
+        </resources>
         <plugins>
             <plugin>
                 <groupId>com.github.eirslett</groupId>
