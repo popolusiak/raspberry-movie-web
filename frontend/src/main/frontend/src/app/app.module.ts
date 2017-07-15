@@ -26,7 +26,7 @@ const ROUTES = [
     HttpModule,
     RouterModule.forRoot(ROUTES),
     TreeModule,
-    InMemoryWebApiModule.forRoot(InMemoryDataService),
+    // InMemoryWebApiModule.forRoot(InMemoryDataService),
     MovieModule
   ],
   providers: [],

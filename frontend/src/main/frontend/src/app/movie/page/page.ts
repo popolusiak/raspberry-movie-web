@@ -11,9 +11,9 @@ export class Page<T> {
     private _firstLink: string;
 
     constructor(json: any, listName:string){        
-        let pageData = json.data[0];
-        this.items = json.data[0]._embedded[listName] as T[];
-        let links = json.data[0]._links
+        let pageData = json;
+        this.items = json._embedded[listName] as T[];
+        let links = json._links
         this._size=pageData.page.size;
         this._totalElements = pageData.page.totalElements;
         this._number = pageData.page.number; 

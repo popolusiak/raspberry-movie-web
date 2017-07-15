@@ -27,6 +27,9 @@
         <module>frontend</module>
         <module>movie-web-api</module>
     </modules>
+    <build>
+        <testSourceDirectory>${project.basedir}/src/test/groovy</testSourceDirectory>
+    </build>
 
     <dependencyManagement>
         <dependencies>

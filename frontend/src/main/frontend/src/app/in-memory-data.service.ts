@@ -5,7 +5,7 @@ import { InMemoryDbService } from 'angular-in-memory-web-api';
 export class InMemoryDataService implements InMemoryDbService {
 
     createDb(){
-        let movies = [
+        let movies = 
             {
   "_embedded" : {
     "movies" : [ {
@@ -82,8 +82,7 @@ export class InMemoryDataService implements InMemoryDbService {
     "totalPages" : 4,
     "number" : 0
   }
-}
-        ]
+};
 
         return {movies};
     }
