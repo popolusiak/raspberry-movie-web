@@ -12,17 +12,20 @@ import { MovieDetail } from './movie/movie-detail';
 })
 export class HomeComponent implements OnInit  {
     page: Observable<Page<Movie>>
+    pagginationVisible = true;    
 
     constructor(private movieService: MovieService){}
 
     navigateToPage(pageNumber: number){
+        this.pagginationVisible = false;
         this.page.subscribe(p => {
-            this.page = this.movieService.nextPage(pageNumber, p)
+            this.page = this.movieService.getPage(pageNumber-1, p)
+            this.pagginationVisible=true;
         })
         
     }
 
     ngOnInit():void {        
-        this.page = this.movieService.getAll();
+        this.page = this.movieService.getWithCategories();
     }
 }

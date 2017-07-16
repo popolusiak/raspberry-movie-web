@@ -15,6 +15,10 @@ export class PageComponent {
     buttonPageClicked(page: number):void {
         this.pageClicked.emit(page);
     }
+
+    isCurrentPage(nb): boolean{
+        return (this.page.number+1) == nb;
+    }
 }
 
 @Pipe({name: 'iterate'})

@@ -117,4 +117,20 @@ class MovieRepositorySpecification extends Specification {
         then: "Movies are sorted by name in order ${first}, ${second}"
         movieResult.andExpect(jsonPath('$._embedded.movies[0].titles[0].name').value(first));
     }
+
+    def "Find all movies order by tytle with projection"(){
+        given:
+        def url = "${urlPath}"
+        def first = "Alf";
+        def second = "Grows Ups";
+        def projection = "withCategories";
+
+        when: "Requesting all movies by ${url} ordered sorted by name"
+        def  movieResult = mockMvc.perform(get(url)
+                .param("projection", projection)
+                .param("sort", "title,asc"))
+
+        then: "Movies are sorted by name in order ${first}, ${second}"
+        movieResult.andExpect(jsonPath('$._embedded.movies[0].titles[0].name').value(first));
+    }
 }

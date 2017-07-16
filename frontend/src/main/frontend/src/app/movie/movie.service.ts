@@ -19,12 +19,22 @@ export class MovieService {
     }
 
     getAll(): Observable<Page<Movie>> {
-        return this.http.get(this.urlPath).map(response => new Page<Movie>(response.json(), "movies"))
+        return this.http.get(this.urlPath).map(response => new Page<Movie>(response.json(), "movies"));
     }
 
-    nextPage(pageNumber: number, page: Page<Movie>): Observable<Page<Movie>> {
+    nextPage(page: Page<Movie>): Observable<Page<Movie>> {
         return this.http.get(page.nextPageLink())
             .map(response => new Page<Movie>(response.json(), "movies"));
+    }
+
+    getPage(pageNumber:number, page: Page<Movie>): Observable<Page<Movie>> {
+        return this.http.get(page.pageLink(pageNumber))
+            .map(response => new Page<Movie>(response.json(), "movies"));
+    }
+
+    getWithCategories(){
+        const url = `${this.urlPath}?projection=withCategories&sort=id,asc&page=0&size=1`;
+        return this.http.get(url).map(response => new Page(response.json(), "movies"));
     }
 
 }

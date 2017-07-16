@@ -1,5 +1,5 @@
 <div *ngIf="page">
-    <pg-page [page]="page | async" (pageClicked)="navigateToPage($event)">
+    <pg-page [page]="page | async" *ngIf="pagginationVisible" (pageClicked)="navigateToPage($event)">
         <movie-card *ngFor="let movie of (page | async)?.items" [movie]="movie" ></movie-card>
     </pg-page>
     <!--<movie-card *ngFor="let movie of (page | async)?.items" [movie]="movie"></movie-card>

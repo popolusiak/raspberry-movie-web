@@ -16,7 +16,8 @@ export class Page<T> {
         let links = json._links
         this._size=pageData.page.size;
         this._totalElements = pageData.page.totalElements;
-        this._number = pageData.page.number; 
+        this._number = pageData.page.number;
+        this._totalPages = pageData.page.totalPages;
 
         this._selfLink = links.self.href;
         this._firstLink = links.first ? links.first.href : this._selfLink;
@@ -53,7 +54,7 @@ export class Page<T> {
     }
 
     nextPageLink(): string{
-        return this.pageLink(this.number);
+        return this.pageLink(this.number+1);
     }
 
     pageLink(pageNumber: number): string{
