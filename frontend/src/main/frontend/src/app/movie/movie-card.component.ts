@@ -1,5 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, AfterContentInit } from '@angular/core';
 import { Movie } from './movie';
+
+declare var $:any;
 
 @Component({
     selector: 'movie-card',
@@ -7,10 +9,13 @@ import { Movie } from './movie';
     styleUrls: ['./movie-card.component.css']
 })
 export class MovieCardComponent implements OnInit{
+    
     @Input() movie: Movie
     title: string;
 
+
     ngOnInit():void {
-        this.title = this.movie.titles[0].title;
+        this.title = this.movie.titles[0].title;        
     }
+
 } 

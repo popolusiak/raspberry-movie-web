@@ -33,7 +33,7 @@ export class MovieService {
     }
 
     getWithCategories(){
-        const url = `${this.urlPath}?projection=withCategories&sort=id,asc&page=0&size=1`;
+        const url = `${this.urlPath}?projection=withCategories&sort=id,asc&page=0&size=3`;
         return this.http.get(url).map(response => new Page(response.json(), "movies"));
     }
 
